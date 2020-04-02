@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Axios from 'axios';
 import {Container} from 'react-bootstrap';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 import './styles.scss';
 
@@ -59,7 +60,7 @@ class Story extends Component {
                             {
                                 this.state.topComments.map( (value, key) => (
                                     <li key={key}>
-                                        { value.text }
+                                        { ReactHtmlParser(value.text) }
                                     </li>
                                 ))
                             }
