@@ -4,6 +4,8 @@ import Axios from 'axios';
 import {Card, Container} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
+import { TimeConverter } from '../../components/timeConverter';
+
 import './styles.scss';
 
 class Top10Stories extends Component {
@@ -18,6 +20,7 @@ class Top10Stories extends Component {
         this.getStoriesContent = this.getStoriesContent.bind(this);
     }
     componentDidMount = async () => {
+        this._isMounted = true;
         const apiUrl = 'https://hacker-news.firebaseio.com/v0/topstories.json';
         const t = this;
         await Axios.get(apiUrl)
@@ -25,7 +28,7 @@ class Top10Stories extends Component {
                 const topStoriesIds = res.data.slice(0, 10);
                 this.setState({topStoriesIds: topStoriesIds});
 
-                topStoriesIds.forEach( value => {
+                this._isMounted && topStoriesIds.forEach( value => {
                     t.getStoriesContent (value);
                 });
 
@@ -56,6 +59,8 @@ class Top10Stories extends Component {
                                     <span>Author: { value.by }</span>
                                     <span>ID: { value.id }</span>
                                     <span>Score: { value.score }</span>
+                                    <span>Comments : { value.descendants }</span>
+                                    <span>Published: { TimeConverter(value.time) }</span>
                                     <span>URL: <a href={ value.url } target={'_blank'} rel="noopener noreferrer">http://....</a></span>
                                 </Card.Text>
                                 <Link variant="primary" className={"myButton"} to={`story/${value.id}`} >Go somewhere</Link>
