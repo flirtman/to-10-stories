@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Axios from 'axios';
 import {Container, Row, Col} from 'react-bootstrap';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 import UserImg from '../../assets/images/user.png';
 
 import './styles.scss';
@@ -47,40 +47,36 @@ class Story extends Component {
                 arr.push(res.data);
             });
         this.setState({topComments: arr});
-        console.log(arr)
 
     };
     render() {
-        const story = this.state.story;
-
-        let topComments = [];
-        if(this.state.topComments[0]) {
-            topComments = this.state.topComments
-        }
-
         return (
             <div id={'story'}>
                 <br/>
-                { story && (
+                { this.state.story && (
                     <Container>
-                        <h1>{ story.title }</h1>
+                        <h1>{ this.state.story.title }</h1>
                         <div className={'comments-wrapper'}>
 
                             <div className={'comments-wrapper-title'}>Top 20 Comments</div>
                             <div className={'comments-wrapper-body'}>
                                 <ul>
                                     {
-                                        this.state.topComments.map( (value, key) => (
+                                        this.state.topComments.map( (value, key) => {
+                                            if (value !== null) {
+                                                return (
 
-                                            <li key={key}>
-                                                <img src={UserImg} alt={'user icon'} className={'user-icon'}/>
-                                                <Row>
-                                                    <Col><strong>Author: {value.by}</strong></Col>
-                                                    <Col className={'text-right'}>Posted on: { TimeConverter(value.time) }</Col>
-                                                </Row>
-                                                { ReactHtmlParser(value.text) }
-                                            </li>
-                                        ))
+                                                    <li key={key}>
+                                                        <img src={UserImg} alt={'user icon'} className={'user-icon'}/>
+                                                        <Row>
+                                                            <Col><strong>Author: {value.by}</strong></Col>
+                                                            <Col className={'text-right'}>Posted on: { TimeConverter(value.time) }</Col>
+                                                        </Row>
+                                                        { ReactHtmlParser(value.text) }
+                                                    </li>
+                                                )
+                                            }
+                                        })
                                     }
                                 </ul>
                             </div>
