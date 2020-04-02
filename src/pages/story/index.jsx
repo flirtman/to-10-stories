@@ -1,9 +1,11 @@
 import React, {Component} from "react";
 import Axios from 'axios';
-import {Container} from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import UserImg from '../../assets/images/user.png';
 
 import './styles.scss';
+import {TimeConverter} from "../../components/timeConverter";
 
 
 class Story extends Component {
@@ -50,21 +52,39 @@ class Story extends Component {
     };
     render() {
         const story = this.state.story;
+
+        let topComments = [];
+        if(this.state.topComments[0]) {
+            topComments = this.state.topComments
+        }
+
         return (
             <div id={'story'}>
                 <br/>
                 { story && (
                     <Container>
                         <h1>{ story.title }</h1>
-                        <ul>
-                            {
-                                this.state.topComments.map( (value, key) => (
-                                    <li key={key}>
-                                        { ReactHtmlParser(value.text) }
-                                    </li>
-                                ))
-                            }
-                        </ul>
+                        <div className={'comments-wrapper'}>
+
+                            <div className={'comments-wrapper-title'}>Top 20 Comments</div>
+                            <div className={'comments-wrapper-body'}>
+                                <ul>
+                                    {
+                                        this.state.topComments.map( (value, key) => (
+
+                                            <li key={key}>
+                                                <img src={UserImg} alt={'user icon'} className={'user-icon'}/>
+                                                <Row>
+                                                    <Col><strong>Author: {value.by}</strong></Col>
+                                                    <Col className={'text-right'}>Posted on: { TimeConverter(value.time) }</Col>
+                                                </Row>
+                                                { ReactHtmlParser(value.text) }
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
+                        </div>
                     </Container>
                 )}
             </div>

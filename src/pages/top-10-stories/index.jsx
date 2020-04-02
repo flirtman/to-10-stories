@@ -60,7 +60,7 @@ class Top10Stories extends Component {
                                     <span>ID: { value.id }</span>
                                     <span>Score: { value.score }</span>
                                     <span>Comments : { value.descendants }</span>
-                                    <span>Published: { TimeConverter(value.time) }</span>
+                                    <span>Posted on: { TimeConverter(value.time) }</span>
                                     <span>URL: <a href={ value.url } target={'_blank'} rel="noopener noreferrer">http://....</a></span>
                                 </Card.Text>
                                 <Link variant="primary" className={"myButton"} to={`story/${value.id}`} >Go somewhere</Link>
