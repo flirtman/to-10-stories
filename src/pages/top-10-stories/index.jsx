@@ -4,7 +4,7 @@ import Axios from 'axios';
 import {Card, Container} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 
-import { TimeConverter } from '../../components/timeConverter';
+import {TimeConverter} from "../../assets/scripts/helpers";
 
 import './styles.scss';
 

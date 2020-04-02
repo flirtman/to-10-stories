@@ -5,7 +5,7 @@ import ReactHtmlParser from 'react-html-parser';
 import UserImg from '../../assets/images/user.png';
 
 import './styles.scss';
-import {TimeConverter} from "../../components/timeConverter";
+import {TimeConverter} from "../../assets/scripts/helpers";
 
 
 class Story extends Component {

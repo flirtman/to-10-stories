@@ -11,6 +11,6 @@ export const checkProps = (component, expectedProps) => {
         expectedProps,
         'props',
         component.name
-    )
+    );
     return propsErr;
 };
