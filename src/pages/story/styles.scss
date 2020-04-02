@@ -10,6 +10,10 @@
     border-bottom: 1px solid #ccc;
     margin-bottom: 10px;
   }
+  li:last-child {
+    border-bottom: none;
+  }
+  margin-bottom: 50px;
   .user-icon {
     width: 50px;
     float: left;
