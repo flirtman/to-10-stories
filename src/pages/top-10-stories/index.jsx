@@ -47,7 +47,7 @@ class Top10Stories extends Component {
     };
     render () {
         return (
-            <Container id={'top10stories'}>
+            <Container id={'top10stories'} data-test={'top10stories'}>
                 <br/>
                 <h1>Top 10 Stories</h1>
                 {

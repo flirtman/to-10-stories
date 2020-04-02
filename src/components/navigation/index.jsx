@@ -7,9 +7,9 @@ import TEEMAlogo1x from '../../assets/images/TEEMAlogo1x.png';
 export default class Navigation extends Component {
     render () {
         return (
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+            <Navbar collapseOnSelect expand="lg" bg="light" variant="light" data-test={'navigation'}>
                 <Navbar.Brand href="/">
-                    <img src={TEEMAlogo1x} alt="" width={'100px'}/>
+                    <img src={TEEMAlogo1x} alt="" width={'100px'} data-test={'logo'}/>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">

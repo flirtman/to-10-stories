@@ -51,7 +51,7 @@ class Story extends Component {
     };
     render() {
         return (
-            <div id={'story'}>
+            <div id={'story'} data-test={'story'}>
                 <br/>
                 { this.state.story && (
                     <Container>
